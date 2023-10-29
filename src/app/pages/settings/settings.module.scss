@@ -1,0 +1,53 @@
+
+.links {
+  width: 100%;
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+}
+
+.link {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+
+
+  &__iconWrapper {
+    width: 25px;
+    height: 25px;
+  }
+
+
+  &__text {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    color: black;
+  }
+
+
+  &__arrow {
+    width: 8px;
+    height: 10px;
+  }
+
+
+}
+
+.clipIcon {
+  margin-top: 3px;
+
+}

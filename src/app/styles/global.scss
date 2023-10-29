@@ -1,0 +1,171 @@
+@import "font-faces";
+
+
+iframe {
+  // overlay
+  display: none;
+}
+
+
+:root {
+  --black-color: #262526;
+  --violet-color: #AA4EAC;
+  --overlay-color: #D0E8FF;
+
+  --gray-color: #9C9C9C;
+  --white-color: #FFF;
+
+
+  --rubic-family: "Rubik";
+  --pacifico-family: "Pacifico";
+}
+
+html {
+  box-sizing: border-box !important;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit !important;
+}
+
+a {
+  text-decoration: none;
+  color: var(--violet-color)
+}
+
+
+body {
+  width: 400px;
+  height: 580px;
+  margin: 0;
+  padding: 0;
+}
+
+
+.app {
+
+
+  width: 400px;
+  height: 580px;
+
+  display: block;
+  position: relative;
+
+
+  padding: 20px;
+
+
+  background-image: url("/static/images/background.png");
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-family: var(--rubic-family);
+  font-weight: 400;
+
+
+  overflow-y: auto;
+
+}
+
+
+.button {
+
+
+  width: 285px;
+  height: 50px;
+  border-radius: 44px;
+  background-color: var(--violet-color);
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+
+  // text
+  font-family: var(--rubic-family);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 17.78px;
+  color: var(--white-color);
+
+  // reset
+  outline: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+
+  &_transparent {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    outline: none;
+
+    color: var(--violet-color);
+    border: 1px var(--violet-color) solid;
+  }
+}
+
+
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  align-items: center;
+
+
+  &__confirm {
+    width: 100%;
+    margin-top: auto;
+  }
+}
+
+
+.separator {
+  border: none;
+  width: 100%;
+  height: 1px;
+  //margin-top: 20px;
+  background-color: #EDEDED;
+}
+
+
+.d-none {
+  display: none;
+}
+
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #DFE9EB;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--violet-color);
+}
+
+
+.eyeIcon {
+  width: 25px;
+  height: 25px;
+}

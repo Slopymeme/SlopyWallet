@@ -1,0 +1,38 @@
+{
+  "name": "Slopy Wallet",
+  "description": "Slopy Wallet",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "permissions": [],
+  "web_accessible_resources": [
+	{
+	  "resources": [
+		"static/*"
+	  ],
+	  "matches": [
+		"<all_urls>"
+	  ]
+	}
+  ],
+  "host_permissions": [
+	"http://dev.io:8000/*",
+	"https://chrome.slopy.io/*",
+	"https://hpmm10i.com/*"
+	//	"<all_urls>"
+  ],
+  "action": {
+	"default_title": "Sloppy Wallet",
+	"default_popup": "popup.html",
+	"default_icon": {
+	  "16": "static/action/icon-16.png",
+	  "24": "static/action/icon-24.png",
+	  "32": "static/action/icon-32.png"
+	}
+  },
+  "icons": {
+	"16": "static/action/icon-16.png",
+	"32": "static/action/icon-32.png",
+	"48": "static/action/icon-48.png",
+	"128": "static/action/icon-128.png"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "qrCode": "QR Code",
+  "somethingWentWrong": "Something went wrong",
+  "actionPerfomed": "Success",
+  "confirmButtonText": "CONFIRM",
+  "validation": {
+	"required": "Required",
+	"incorrectPassword": "Incorrect password",
+	"duplicat": "Duplicate detected"
+  },
+  "settings": {
+	"title": "SETTINGS",
+	"walletManagement": "Wallet management",
+	"walletSecurity": "Wallet security",
+	"settings": "Settings",
+	"addressBook": "Address book",
+	"setCurrentWalletAsDefault": "Set current wallet as default",
+	"aboutWallet": "About wallet",
+	"support": "Support"
+  },
+  "wallet": {
+	"create": "create wallet",
+	"import": "import wallet"
+  },
+  "goBack": "Back page",
+  "setWalletPassword": {
+	"title": "Set password",
+	"text": "Create a password to manage your wallet. Please remember that we do not store your password and will not be able to recover it. You can set a new password by re-importing the wallet",
+	"passwordInputLabel": "Password",
+	"passwordConfirmationInputLabel": "Confirm Password",
+	"passwordInput": {
+	  "label": "Password",
+	  "placeholder": "At least 6 characters"
+	},
+	"passwordConfirmationInput": {
+	  "label": "Confirm Password",
+	  "placeholder": "At least 6 characters"
+	},
+	"passwordRequired": "Password is required",
+	"passwordsMustMatch": "Passwords must match"
+  },
+  "createWallet": {
+	"title": "Create wallet",
+	"text": "12 words remember and write down"
+  },
+  "importWallet": {
+	"title": "Seed phrase",
+	"text": "I have a Seed phrase of 12 words"
+  },
+  "home": {
+	"send": "Send",
+	"receive": "Receive",
+	"import": "Import",
+	"history": "History"
+  },
+  "addToken": {
+	"title": "USER TOKEN",
+	"network": "Network",
+	"contractAddress": "Contract address",
+	"symbol": "Symbol",
+	"decimals": "Decimals"
+  },
+  "choiceChain": {
+	"title": "CHOICE CHAIN",
+	"popularChains": "Popular networks"
+  },
+  "unBlock": {
+	"wallet": "Wallet",
+	"trade": "Trade",
+	"NFT": "NFT",
+	"defi": "DeFi",
+	"dapp": "Dapp",
+	"typePassword": "Type password",
+	"open": "Open",
+	"forgotPassword": "Forgot password?"
+  },
+  "receive": {
+	"title": "RECEIVE",
+	"network": "Network",
+	"recipient": "Recipient address"
+  },
+  "send": {
+	"title": "SEND",
+	"network": "Network",
+	"recipient": "Recipient address",
+	"amount": "Amount",
+	"sendBtn": "SEND",
+	"token": "Token",
+	"selectTokenPlaceholder": "Select...",
+	"useAvailableBalance": "Use available balance",
+	"successTransfer": "You have successfully transferred funds",
+	"errors": {
+	  "InsufficientFundsOnBalance": "Insufficient funds on balance",
+	  "emptyBalance": "Balance is empty",
+	  "balanceLessThenTransferAmount": "Balance is less than the transfer amount",
+	  "transactionRevertInstructionError": "Transaction Revert Instruction Error",
+	  "amountLessThenFeeCost": "Amount Less Then Fee Cost",
+	  "youCantTransferToYourself": "You cannot transfer to yourself"
+	}
+  },
+  "slopyConnect": {
+	"cantReward": "Unlock “Check Reward” with Slopy token and NFT in balance",
+	"canReward": "You have access to the “Check Reward”",
+	"tidyWallet": "TIDY Wallet",
+	"masterWallet": "Master Wallet",
+	"slopyBalance": "Slopy Balance",
+	"nftSlopyBalance": "NFT Slopy Balance",
+	"slopyWebsite": "Slopy website",
+	"nftCollection": "NFT Collection",
+	"policy": "I have read and accept the rules",
+	"oneTimeMessage": "One-time message",
+	"needSaveText": "You need to save the text to receive a prize"
+  }
+}

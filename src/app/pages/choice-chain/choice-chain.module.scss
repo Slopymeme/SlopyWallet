@@ -1,0 +1,38 @@
+
+.popularChains {
+  margin-top: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  text-align: left;
+}
+
+.chains {
+  width: 100%;
+  margin-top: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chain {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+
+  cursor: pointer;
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  &__symbol {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 15px;
+    text-align: left;
+  }
+}

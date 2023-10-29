@@ -1,0 +1,45 @@
+
+@mixin posCenter {
+  width: auto;
+  max-width: 100%;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  z-index: 1;
+
+
+
+
+}
+
+
+.modal {
+  @include posCenter;
+  max-width: calc(100% - 60px);
+  background-color: white;
+
+  border-radius: 12px !important;
+
+
+  z-index: 10000 !important;
+
+  box-shadow: 12px 11px 22px 0px #0000001C;
+
+
+  padding: 15px;
+
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  //padding: 10px;
+
+}
+
+.portal {
+  border: none;
+  border-radius: 90px;
+}

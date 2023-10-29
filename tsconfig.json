@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+	"plugins": [
+	  {
+		"name": "typescript-plugin-css-modules"
+	  }
+	],
+	"target": "es6",
+	"lib": [
+	  "dom",
+	  "dom.iterable",
+	  "esnext"
+	],
+	"allowJs": true,
+	"skipLibCheck": true,
+	"strict": true,
+	"forceConsistentCasingInFileNames": true,
+	"noEmit": false,
+	"esModuleInterop": true,
+	"module": "esnext",
+	"moduleResolution": "node",
+	"resolveJsonModule": true,
+	"isolatedModules": false,
+	"jsx": "react-jsx",
+	"strictNullChecks": true,
+	"preserveConstEnums": true,
+	"strictPropertyInitialization": false,
+	"strictBindCallApply": true,
+	"noImplicitThis": true,
+	"experimentalDecorators": true,
+	"sourceMap": true,
+	"allowSyntheticDefaultImports": true,
+	"noEmitOnError": false,
+	"noEmitHelpers": false,
+	"removeComments": true,
+	"outDir": "dist",
+	"rootDir": "./",
+	"baseUrl": "./"
+  },
+  "paths": {
+	"@app/*": ["./src/app/*"]
+  },
+  "include": [
+	"src"
+  ],
+  "exclude": [
+	"node_modules",
+	"dist"
+  ],
+}
