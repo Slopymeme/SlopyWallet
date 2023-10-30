@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "NODE_ENV=production webpack-cli --config webpack.config.mjs",
+    "build": "npx cross-env NODE_ENV=production npx webpack-cli --config webpack.config.mjs",
     "dev": "NODE_ENV=development webpack-dev-server --config webpack.config.mjs",
     "test": "NODE_ENV=test ts-jest"
   },
@@ -21,6 +21,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "classnames": "^2.3.2",
+    "cross-env": "^7.0.3",
     "crypto-browserify": "^3.12.0",
     "date-fns": "^2.30.0",
     "decimal.js": "^10.4.3",
