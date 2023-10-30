@@ -8,7 +8,7 @@ import {Network, popupActions} from "../../../modules/popup/popup.slice";
 import TextField from "../../components/text-field";
 import Yup from "../../../modules/core/yup";
 import {useAppForm} from "../../../modules/core/hooks/use-app-form";
-import {FormProvider} from "react-hook-form";
+import {FormProvider, useWatch} from "react-hook-form";
 import {useNavigate, useOutletContext, useSearchParams} from "react-router-dom";
 import {PageRoutes} from "../../../config";
 import qs from "qs";
@@ -22,6 +22,9 @@ import {ToastService} from "../../../modules/core/toast.service";
 import {Web3Service} from "../../../modules/crypto/web3.service";
 import {useIsShowSpinner} from "../../hooks/use-spinner";
 import Spinner from "../../components/spinner";
+import useSWR from "swr";
+import api from "../../api";
+import useSWRImmutable from "swr/immutable";
 
 
 export function AddToken() {
@@ -41,6 +44,9 @@ export function AddToken() {
 	// const [isDisabled, setIsDisabled] = useState(false)
 
 	const [isShow, setIsShow] = useIsShowSpinner(false)
+
+
+
 
 	const schema = useMemo(() => {
 		return Yup.object().shape({
@@ -96,6 +102,17 @@ export function AddToken() {
 					: "static/icons/chains/bsc.png"
 
 
+
+				try {
+					const logo = await api.market.getTokenLogo(chain.chainId, contractAddress)
+					if (logo) {
+					asset = `data:image/png;base64, ${logo}`
+				}
+				} catch (e) {
+					console.error(e)
+				}
+
+
 				// setIsDisabled(true)
 				dispatch(popupActions.addToken({
 					chainId: chain.chainId,
@@ -118,6 +135,10 @@ export function AddToken() {
 
 		}
 	})
+
+	const contractAddress = useWatch({control: methods.control, name: "contract"})
+
+
 
 
 	return (

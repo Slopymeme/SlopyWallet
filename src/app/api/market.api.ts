@@ -2,6 +2,23 @@ import {FetchInstance} from "./fetch-instance";
 import qs from "qs";
 
 
+export type TX = {
+	chainId: number
+	txid: string
+	from: string
+	createdAt: Date
+	to: string,
+	value: string
+	isContract: boolean
+	transferData?: {
+		to: string,
+		value: string
+	}
+
+
+
+}
+
 export class MarketApi {
 	protected instance = FetchInstance.getInstance("market")
 
@@ -13,6 +30,17 @@ export class MarketApi {
 		})}`) as { count: number }
 		return data.count
 	}
+
+	async getNormalTransactions(chainId: number, address: string) {
+		const txs = await this.instance.get(`get-normal-transactions?${qs.stringify({chainId, address})}`) as TX[]
+		return txs.map((tx) => {
+			return {
+				...tx,
+				createdAt: new Date(tx.createdAt)
+			}
+		})
+	}
+
 
 	async getTokenBalances(tokenContracts: string[], ownerAddress: string, chain: number) {
 		return await this.instance.get(`get-token-balances?${qs.stringify({
@@ -40,6 +68,14 @@ export class MarketApi {
 			bnbVsUsdChange: number
 		}
 	}
+
+
+	async getTokenLogo(chain: number, address: string) {
+		const {logo} = await this.instance.get(`get-token-logo?${qs.stringify({chain, address})}`) as {logo: string | null}
+		return logo
+	}
+
+
 
 
 }

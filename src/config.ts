@@ -24,7 +24,10 @@ export const PageRoutes = {
 	Settings: "settings",
 
 	Receive: "receive",
-	Send: "send"
+	Send: "send",
+
+
+	History: "history"
 } as const
 
 Object.entries(PageRoutes).forEach(([key, value]) => {

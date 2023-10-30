@@ -103,6 +103,7 @@ function App() {
 
 
 					<Route path={PageRoutes.Unblock} element={<Pages.Unblock/>}/>
+					<Route path={PageRoutes.History} element={<Pages.History/>}/>
 				</Route>
 			</>
 		))

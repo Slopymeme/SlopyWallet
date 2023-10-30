@@ -144,7 +144,7 @@ function useTokenBalancesCorrect() {
 // }
 
 
-function useInfoTokens() {
+export function useInfoTokens() {
 	const {tokens} = useAppSelector((state) => state.popup)
 	const balancesData = useTokenBalancesCorrect()
 
@@ -253,12 +253,12 @@ export function Home() {
 					</div>
 					<div className={styles.action__text}>{t("home.import")}</div>
 				</Link>
-				<div className={styles.action}>
+				<Link className={styles.action} to={PageRoutes.History}>
 					<div className={styles.action__circle}>
 						<img className={styles.action__icon} src="static/icons/tx-history.png"/>
 					</div>
 					<div className={styles.action__text}>{t("home.history")}</div>
-				</div>
+				</Link>
 			</div>
 			<hr className="separator" style={{marginTop: "30px"}}/>
 

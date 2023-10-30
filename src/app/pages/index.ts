@@ -12,6 +12,7 @@ import ChoiceChain from "./choice-chain";
 import Receive from "./receive";
 import Send from "./send";
 import {Entries} from "type-fest";
+import History from "./history";
 // import { withLastOpenPageUpdater } from "../hooks/use-last-open-page-updater";
 
 
@@ -29,7 +30,8 @@ export const Pages: Record<keyof typeof PageRoutes, () => JSX.Element> = {
 	AddToken: AddToken,
     ChoiceChain: ChoiceChain,
 	Receive: Receive,
-	Send: Send
+	Send: Send,
+	History: History
 }
 
 

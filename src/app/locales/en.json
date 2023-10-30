@@ -87,7 +87,7 @@
 	"sendBtn": "SEND",
 	"token": "Token",
 	"selectTokenPlaceholder": "Select...",
-	"useAvailableBalance": "Use available balance",
+	"maxAmount": "Max Amount",
 	"successTransfer": "You have successfully transferred funds",
 	"errors": {
 	  "InsufficientFundsOnBalance": "Insufficient funds on balance",

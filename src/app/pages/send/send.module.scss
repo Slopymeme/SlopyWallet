@@ -7,8 +7,23 @@
 }
 
 .allAmount {
-  margin-top: 5px;
-  margin-right: auto;
-  color:  #FF9494;
+  position: absolute;
+  //margin-bottom: -32px;
+  margin-left: auto;
+  color: black;
   cursor: pointer;
+  z-index: 0;
+  left: 285px;
+  top: 15px;
+}
+
+.feeCost {
+   margin-left: auto;
+  margin-top: 5px;
+  //width: 100%;
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  color: black;
+
 }

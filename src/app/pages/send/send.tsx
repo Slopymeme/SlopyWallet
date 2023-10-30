@@ -6,7 +6,7 @@ import {useAppForm} from "../../../modules/core/hooks/use-app-form";
 import {PageRoutes} from "../../../config";
 import Yup from "../../../modules/core/yup";
 import React, {useState} from "react";
-import {FormProvider} from "react-hook-form";
+import {Control, FormProvider, useWatch} from "react-hook-form";
 import PageInfoHeading from "../../widgets/page-info-heading";
 import cn from "classnames";
 import qs from "qs";
@@ -21,7 +21,7 @@ import {toWei} from "../../../modules/hex.utiils";
 import Web3, {TransactionRevertInstructionError} from "web3";
 import {ERC20ABI} from "../../../modules/crypto/contracts/erc20-abi";
 import {AccountService} from "../../../modules/crypto/account.service";
-import {parseUnits} from "ethers";
+import {formatUnits, parseUnits} from "ethers";
 import {BigNumber} from "@ethersproject/bignumber";
 import {ToastService} from "../../../modules/core/toast.service";
 import {useIsShowSpinner} from "../../hooks/use-spinner";
@@ -29,6 +29,8 @@ import Spinner from "../../components/spinner";
 import {TFunction} from "i18next";
 import {Web3Service} from "../../../modules/crypto/web3.service";
 import {isEmpty} from "lodash";
+import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 
 const schema = Yup.object().shape({
 	token: Yup.mixed().required(),
@@ -67,6 +69,54 @@ function hasAmountForTransfer(balance: BigNumber, amount: BigNumber, t: TFunctio
 }
 
 
+function useTokenFormattedBalance(control: Control<any>) {
+	const tokenData = useWatch({control, name: "token"}) as { token: Token } | undefined
+	const {mainnet, bsc} = useWeb3Services()
+	const {wallet} = useAppSelector((state) => state.popup)
+
+	const {data: balance} = useSWRImmutable(
+		tokenData && `token-balance-${tokenData.token.contract}-${tokenData.token.chainId}`, async () => {
+			const token = tokenData?.token as Token
+			const isERC20Token = Boolean(token.contract)
+			const web3 = token.chainId === 1 ? mainnet : bsc
+			const ownerAddress = wallet?.address as string
+			let balance: bigint
+			if (isERC20Token) {
+				const contract = new web3.eth.Contract<typeof ERC20ABI>(ERC20ABI, token.contract as string)
+				balance = await contract.methods.balanceOf(ownerAddress).call()
+			} else {
+				balance = await web3.eth.getBalance(ownerAddress)
+			}
+			return +formatUnits(balance, token.decimals)
+		})
+
+	return balance
+}
+
+
+function useFeeCost(control: Control<any>) {
+	const tokenData = useWatch({control, name: "token"}) as { token: Token } | undefined
+	const {mainnet, bsc} = useWeb3Services()
+	const {wallet} = useAppSelector((state) => state.popup)
+
+	const {data: feeCost} = useSWRImmutable(
+		tokenData && `token-transfer-fee-cost-${Boolean(tokenData.token.contract)}-${tokenData.token.chainId}`,
+		async () => {
+			const token = tokenData?.token as Token
+			const isERC20Token = Boolean(token.contract)
+			const web3 = token.chainId === 1 ? mainnet : bsc
+
+
+			let gasLimit = isERC20Token ? 150_000 : 21_000
+			let gasPrice = await web3.eth.getGasPrice()
+			const feeCost = BigNumber.from(gasLimit).mul(gasPrice) // wei
+
+			return +formatUnits(feeCost.toString(), 18) // 18 decimals
+		})
+	return feeCost
+}
+
+
 export function Send() {
 	const {t} = useTranslation()
 
@@ -79,8 +129,6 @@ export function Send() {
 		chain = chains[0]
 	}
 	const [isShow, setIsShow] = useIsShowSpinner(false)
-
-
 
 
 	const {ref, methods} = useAppForm({
@@ -127,7 +175,14 @@ export function Send() {
 		}
 	})
 
-	const {setValue, getValues, reset} = methods
+
+	const {setValue, getValues, reset, control} = methods
+
+
+	const balance = useTokenFormattedBalance(control)
+	const feeCost = useFeeCost(control)
+	console.log(feeCost)
+
 
 	async function onSubmit({token: rawToken, amount: _amount, recipient}: any) {
 		const token = (rawToken as any).token as Token
@@ -210,8 +265,6 @@ export function Send() {
 				hasAmountForTransfer(balance, BigNumber.from(amount), t)
 
 
-
-
 				const {txid, txRaw} = await transferService.transfer({
 					to: recipient,
 					amount,
@@ -284,22 +337,26 @@ export function Send() {
 						errorClassName="d-none"
 					/>
 
+					<div style={{position: "relative"}}>
+						<div
+							className={styles.allAmount}
+							onClick={async () => {
+								setValue("amount", balance ? balance : 0)
+							}}
+						>
+							{t("send.maxAmount")}
+						</div>
+					</div>
+
 					<TextField
 						label={t("send.amount")}
 						name="amount"
 						errorClassName="d-none"
 					/>
 				</div>
-				{/*<div*/}
-				{/*	className={styles.allAmount}*/}
-				{/*	onClick={async () => {*/}
-
-
-				{/*		setValue("amount", 0)*/}
-				{/*	}}*/}
-				{/*>*/}
-				{/*	{t("send.useAvailableBalance")}*/}
-				{/*</div>*/}
+				{feeCost && <span className={styles.feeCost}><span
+					style={{color: 'black', marginRight: "5px"}}>Gas Fee:</span> {feeCost.toFixed(
+					8)} {chain.chainId === 1 ? "ETH" : "BNB"}</span>}
 
 				<button
 					className={cn("button", "page__confirm")}
